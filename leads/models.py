@@ -20,13 +20,13 @@ class Lead(models.Model):
         choices=STATUS_CHOICES,
         default='New'
     )
-
     assigned_to = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name='leads'
-    )
-
+    User,
+    on_delete=models.CASCADE,
+    related_name='leads',
+    null=True,
+    blank=True
+)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
