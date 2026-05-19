@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-+-g%t&rgy=4d--94&=l91=q!1=c@%l1-99#vstn66&3%g!skb^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "web-production-c139e.up.railway.app",
+    "127.0.0.1",
+    "localhost",
+]
 
 
 # Application definition
@@ -121,11 +125,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+import os
+import dj_database_url
+
+STATIC_URL = 'static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    ...
+]
